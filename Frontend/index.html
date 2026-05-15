@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Failure Diagnosis & Repair System</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- External Libraries -->
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Vanilla Tilt -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- 3D Canvas Background -->
+    <canvas id="three-canvas"></canvas>
+
+    <main>
+        <!-- Section 1: Hero -->
+        <section class="hero-section">
+            <div class="floating-rings">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title text-glow">
+                    Your CI/CD pipeline<br>
+                    doesn't just break.<br>
+                    <span class="gradient-text">It tells you why.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Multi-agent AI that diagnoses, reasons, and repairs pipeline failures autonomously.
+                </p>
+                <button class="cta-button">
+                    <span class="cta-inner glass-card">Run a Diagnosis &rarr;</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 2: How It Works -->
+        <section class="how-it-works-section" id="how-it-works">
+            <div class="sticky-container">
+                <div class="grid-layout">
+                    <div class="how-it-works-text">
+                        <h2 class="section-title text-glow">
+                            How the multi-agent system <span class="gradient-text">resolves failures</span>
+                        </h2>
+                        <p class="section-subtitle">
+                            A sequential workflow of specialized LLM agents working in concert to diagnose and repair
+                            issues.
+                        </p>
+                    </div>
+
+                    <div class="cards-container" id="cards-container">
+                        <!-- Cards will be injected/animated here via JS -->
+                        <div class="agent-card glass-card" data-tilt data-tilt-max="15" data-tilt-speed="400"
+                            data-tilt-glare data-tilt-max-glare="0.2">
+                            <div class="card-header">
+                                <div class="icon-box">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide-radar">
+                                        <path d="M19.07 4.93A10 10 0 0 0 6.99 3.34" />
+                                        <path d="M4 6h.01" />
+                                        <path d="M2.29 9.62A10 10 0 1 0 21.31 8.35" />
+                                        <path d="M16.24 7.76A6 6 0 1 0 8.23 16.67" />
+                                        <path d="M12 18h.01" />
+                                        <path d="M17.99 11.66A6 6 0 0 1 15.77 16.67" />
+                                        <circle cx="12" cy="12" r="2" />
+                                        <path d="m13.41 10.59 5.66-5.66" />
+                                    </svg>
+                                </div>
+                                <div class="card-title-group">
+                                    <span class="step-label">Step 1</span>
+                                    <h3 class="card-title">Pipeline Monitor</h3>
+                                </div>
+                            </div>
+                            <p class="card-desc">Watches your CI/CD for failures in real time.</p>
+                        </div>
+
+                        <div class="agent-card glass-card" data-tilt data-tilt-max="15" data-tilt-speed="400"
+                            data-tilt-glare data-tilt-max-glare="0.2">
+                            <div class="card-header">
+                                <div class="icon-box">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide-terminal">
+                                        <polyline points="4 17 10 11 4 5" />
+                                        <line x1="12" x2="20" y1="19" y2="19" />
+                                    </svg>
+                                </div>
+                                <div class="card-title-group">
+                                    <span class="step-label">Step 2</span>
+                                    <h3 class="card-title">Log Analyzer</h3>
+                                </div>
+                            </div>
+                            <p class="card-desc">Reads raw logs. Classifies failure type instantly.</p>
+                        </div>
+
+                        <div class="agent-card glass-card" data-tilt data-tilt-max="15" data-tilt-speed="400"
+                            data-tilt-glare data-tilt-max-glare="0.2">
+                            <div class="card-header">
+                                <div class="icon-box">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide-brain">
+                                        <path
+                                            d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
+                                        <path
+                                            d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
+                                        <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4" />
+                                        <path d="M17.599 6.5a3 3 0 0 0 .399-1.375" />
+                                    </svg>
+                                </div>
+                                <div class="card-title-group">
+                                    <span class="step-label">Step 3</span>
+                                    <h3 class="card-title">Root Cause Reasoner</h3>
+                                </div>
+                            </div>
+                            <p class="card-desc">Chain-of-thought reasoning across error + git history.</p>
+                        </div>
+
+                        <div class="agent-card glass-card" data-tilt data-tilt-max="15" data-tilt-speed="400"
+                            data-tilt-glare data-tilt-max-glare="0.2">
+                            <div class="card-header">
+                                <div class="icon-box">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide-wrench">
+                                        <path
+                                            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                                    </svg>
+                                </div>
+                                <div class="card-title-group">
+                                    <span class="step-label">Step 4</span>
+                                    <h3 class="card-title">Patch Generator</h3>
+                                </div>
+                            </div>
+                            <p class="card-desc">Outputs a precise fix — config diff, dependency patch, or code.</p>
+                        </div>
+
+                        <div class="agent-card glass-card" data-tilt data-tilt-max="15" data-tilt-speed="400"
+                            data-tilt-glare data-tilt-max-glare="0.2">
+                            <div class="card-header">
+                                <div class="icon-box">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide-shield-check">
+                                        <path
+                                            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2-1 4-2 7-2 2.12 0 4.1.84 6.83 2.17a1 1 0 0 1 .5.83V13Z" />
+                                        <path d="m9 12 2 2 4-4" />
+                                    </svg>
+                                </div>
+                                <div class="card-title-group">
+                                    <span class="step-label">Step 5</span>
+                                    <h3 class="card-title">Validator</h3>
+                                </div>
+                            </div>
+                            <p class="card-desc">Re-runs tests. Confirms fix. Loops if needed.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Live Demo -->
+        <section class="demo-section">
+            <div class="demo-header">
+                <h2 class="section-title text-glow">Live Diagnosis Engine</h2>
+                <p class="section-subtitle">Experience the multi-agent reasoning in real-time.</p>
+            </div>
+
+            <div class="demo-panel glass-card">
+                <!-- Left Controls -->
+                <div class="demo-controls">
+                    <div class="control-group">
+                        <label>Select Scenario</label>
+                        <div class="select-wrapper">
+                            <select id="scenario-select">
+                                <option value="dependency">Scenario 1: Broken dependency (ModuleNotFoundError)</option>
+                                <option value="env">Scenario 2: Missing env variable (DATABASE_URL)</option>
+                                <option value="test">Scenario 3: Flaky test (401 != 200)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button id="run-btn" class="run-button">
+                        <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="6 3 20 12 6 21 6 3" />
+                        </svg>
+                        <svg class="spinner-icon hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="4 17 10 11 4 5" />
+                            <line x1="12" x2="20" y1="19" y2="19" />
+                        </svg>
+                        <span id="run-btn-text">Run Diagnosis</span>
+                    </button>
+                </div>
+
+                <!-- Right Terminal -->
+                <div class="demo-terminal">
+                    <div class="terminal-header">
+                        <div class="window-controls">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                        </div>
+                        <div class="confidence-container hidden" id="confidence-container">
+                            <span>Confidence</span>
+                            <div class="progress-arc">
+                                <svg viewBox="0 0 64 64">
+                                    <circle cx="32" cy="32" r="24" class="arc-bg"></circle>
+                                    <circle cx="32" cy="32" r="24" class="arc-value" id="arc-value"></circle>
+                                </svg>
+                                <div class="arc-text" id="arc-text">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="terminal-body" id="terminal-output">
+                        <!-- Output logs will go here -->
+                        <div class="processing-indicator hidden" id="processing-indicator">
+                            <span class="prompt">❯</span><span class="cursor"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Metrics -->
+        <section class="metrics-section" id="metrics">
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-value"><span class="counter" data-target="90">45</span> <span
+                            class="unit">sec</span></div>
+                    <p class="metric-label">MTTR Reduced From 45 Min</p>
+                    <p class="metric-desc">Mean Time To Resolution drops dramatically with automated patching.</p>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value"><span class="counter" data-target="94">0</span><span class="unit">%</span>
+                    </div>
+                    <p class="metric-label">Average Confidence</p>
+                    <p class="metric-desc">High-accuracy classification powered by multi-agent consensus.</p>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value"><span class="counter" data-target="3">0</span></div>
+                    <p class="metric-label">Failure Types Auto-Resolved</p>
+                    <p class="metric-desc">Dependencies, Environment Vars, and Flaky Tests.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Built at <span class="footer-highlight">HackOasis 2025</span></p>
+            <p class="team-name">Team Binary Bombers</p>
+        </footer>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
