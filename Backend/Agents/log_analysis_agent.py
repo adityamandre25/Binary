@@ -1,12 +1,11 @@
-import google.generativeai as genai
+from google import genai
 import json
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel("gemini-2.0-flash")
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 def analyze_log(raw_log: str) -> dict:
 
@@ -28,7 +27,11 @@ Rules:
 Log:
 """ + raw_log
 
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=prompt
+    )
+
     raw_response = response.text.strip()
 
     if raw_response.startswith("```"):
