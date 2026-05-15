@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from Agents.log_analysis_agent import analyze_log
-from Agents.docker_runner import clone_and_run
+from docker_runner import clone_and_run
 
 load_dotenv()
 
@@ -13,11 +13,11 @@ def main():
     print("\n[Cloning repo and running Docker...]\n")
     raw_log = clone_and_run(repo_url)
 
-    print("\n[Docker finished. Sending logs to Agent 1 — Gemini...]\n")
+    print("\n[Docker done. Sending to Agent 1...]\n")
     result = analyze_log(raw_log)
 
     print("=" * 50)
-    print("AGENT 1 OUTPUT")
+    print("AGENT 1 — LOG ANALYSIS OUTPUT")
     print("=" * 50)
     print(f"Failed Step  : {result['failed_step']}")
     print(f"Exit Code    : {result['exit_code']}")
@@ -29,9 +29,11 @@ def main():
 
     shared_context = {
         "repo_url": repo_url,
+        "raw_log": raw_log,
         "agent1_output": result
     }
 
+    print("\n[Agent 1 complete. Context ready for Agent 2.]\n")
     return shared_context
 
 if __name__ == "__main__":
